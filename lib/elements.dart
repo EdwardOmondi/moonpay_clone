@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:google_fonts/google_fonts.dart';
 import 'package:moonpay_clone/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -23,24 +23,23 @@ class NavBarLogo extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(right:36.0),
+          padding: const EdgeInsets.only(right: 36.0),
           child: Text(
             'MoonPay',
-      // style: TextStyle(
-      //     //letterSpacing: .5,
-      //     fontSize: 24,
-      //     fontWeight: FontWeight.bold,
-      //     fontFamily: kLogoFont),
+            style: TextStyle(
+                //letterSpacing: .5,
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+                fontFamily: kLogoFont),
 
-      style: GoogleFonts.montserrat(
-            textStyle: const TextStyle(
-          //letterSpacing: .5,
-          fontSize: 26,
-          fontWeight: FontWeight.bold,
-      )),
-    ),
+            // style: GoogleFonts.montserrat(
+            //     textStyle: const TextStyle(
+            //   //letterSpacing: .5,
+            //   fontSize: 26,
+            //   fontWeight: FontWeight.bold,
+            // )),
+          ),
         ),
-    
       ],
     );
   }
@@ -77,19 +76,35 @@ class BuyCryptoButton extends StatelessWidget {
 }
 
 class BuyCoinsButton extends StatelessWidget {
-  const BuyCoinsButton(
-      {Key? key,
-      required this.text,
-      required this.cryptoIcon,
-      required this.color,
-      required this.width})
-      : super(key: key);
+  const BuyCoinsButton({
+    Key? key,
+    required this.text,
+    required this.cryptoIcon,
+    required this.color,
+    //required this.width,
+  }) : super(key: key);
   final String text;
   final IconData cryptoIcon;
   final Color color;
-  final double width;
+
   @override
   Widget build(BuildContext context) {
+    double width;
+    double screenWidth;
+    double screenWidthFunc(BuildContext context) =>
+        MediaQuery.of(context).size.width;
+    screenWidth = screenWidthFunc(context);
+
+    screenWidth < 670
+        ? width = 260
+        : screenWidth < 696
+            ? width = 239
+            : screenWidth < 960
+                ? width = 252
+                : screenWidth < 1280
+                    ? width = 231
+                    : width = 260;
+
     return MaterialButton(
       onPressed: () {},
       color: kBackgroundColour,
@@ -206,18 +221,56 @@ class NavBarButton extends StatelessWidget {
       color: kBackgroundColour,
       child: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal:24,
-          vertical:15,
+          horizontal: 24,
+          vertical: 15,
         ),
         child: Text(
           text,
           style: TextStyle(
-        fontSize: 16.0,
-        color: kBlackColour,
-        fontFamily: kMainFont
-          ),
+              fontSize: 16.0, color: kBlackColour),
         ),
       ),
     );
   }
 }
+
+class FooterLinkButton extends StatefulWidget {
+   const FooterLinkButton(
+      {Key? key, required this.text})
+      : super(key: key);
+
+  final String text;
+
+  @override
+  State<FooterLinkButton> createState() => _FooterLinkButtonState();
+}
+
+class _FooterLinkButtonState extends State<FooterLinkButton> {      
+
+Color textColor = kBackgroundColour;
+
+  void _returnTextBlack(PointerEvent details) {
+    setState(() {
+      textColor = kBackgroundColour;
+    });
+  }
+
+  void _makeTextGrey(PointerEvent details) {
+    setState(() {
+      textColor = const Color(0xFF555555);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      
+      onHover: _makeTextGrey,
+      onExit: _returnTextBlack,
+      cursor: MouseCursor.uncontrolled,
+      child: Text(
+        widget.text, style: TextStyle(fontSize: 14, color: textColor),),
+    );
+  }
+}
+

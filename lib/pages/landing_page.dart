@@ -12,12 +12,15 @@ class LandingPage extends StatelessWidget {
       backgroundColor: kBackgroundColour,
       body: Column(
         children: [
-          const NavBar(),
+          const Padding(
+            padding:  EdgeInsets.symmetric(vertical:12.0),
+            child: NavBar(),
+          ),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
-                children:  [
-                  const Body(),
+                children:  const [
+                  Body(),
                   Footer(),
                 ],
               ),

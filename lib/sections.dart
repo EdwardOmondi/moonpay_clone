@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moonpay_clone/constants.dart';
 import 'package:moonpay_clone/elements.dart';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:crypto_font_icons/crypto_font_icons.dart';
 
@@ -44,14 +44,37 @@ class NavBar extends StatelessWidget {
           children: [
             const NavBarLogo(),
             SizedBox(
-              width: 262,
+              //width: 262,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
-                  NavBarButton(text: 'Buy Crypto'),
+                children:  [
+                  const NavBarButton(text: 'Buy Crypto'),
                   // NavBarButton(text: 'Business \u{25BC}'),
-                  NavBarButton(text: 'Business'),
-                  
+                  MaterialButton(
+                    elevation: 0,
+                    onPressed: () {},
+                    color: kBackgroundColour,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 15,
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Business',
+                            style: TextStyle(
+                                fontSize: 16.0, color: kBlackColour),
+                          ),
+                          const Icon(
+                            Icons.arrow_drop_down_outlined,
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+  
                 ],
               ),
             ),
@@ -127,6 +150,7 @@ class Body extends StatelessWidget {
       return SizedBox(
         width: screenWidth - 40,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const LargeLandingText(),
             const SmallLandingText(),
@@ -150,7 +174,7 @@ class Body extends StatelessWidget {
         children: [
           Expanded(child: Container()),
           SizedBox(
-            width: screenWidth - 40,
+            width: screenWidth - 40, // removing double the padding
             child: Column(
               children: [
                 const LargeLandingText(),
@@ -161,7 +185,6 @@ class Body extends StatelessWidget {
                 const SizedBox(height: 24),
                 LandingPageImage(
                   image: pic1,
-                  //width:400,
                 ),
                 const SizedBox(height: 16),
                 const GetStartedSection(),
@@ -189,7 +212,6 @@ class Body extends StatelessWidget {
                       BuyCryptoButton(),
                       SizedBox(height: 64),
                       TinyLandingText(),
-                      SizedBox(height: 24),
                     ],
                   ),
                 ),
@@ -202,7 +224,7 @@ class Body extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
             const GetStartedSection(),
             const SizedBox(height: 24),
           ],
@@ -224,7 +246,6 @@ class Body extends StatelessWidget {
                       BuyCryptoButton(),
                       SizedBox(height: 64),
                       TinyLandingText(),
-                      SizedBox(height: 24),
                     ],
                   ),
                 ),
@@ -237,7 +258,7 @@ class Body extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
             const GetStartedSection(),
             const SizedBox(height: 24),
           ],
@@ -248,9 +269,8 @@ class Body extends StatelessWidget {
 }
 
 class Footer extends StatelessWidget {
-  Footer({Key? key}) : super(key: key);
-  final TextStyle kGridStyle =
-      TextStyle(fontSize: 14, color: kBackgroundColour);
+  const Footer({Key? key}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
@@ -270,7 +290,7 @@ class Footer extends StatelessWidget {
               const SizedBox(height: 68),
               const FooterButtons(),
               const SizedBox(height: 48),
-              FooterLinks(kGridStyle: kGridStyle),
+              const FooterLinks(),
               const SizedBox(height: 16),
               const FooterSocialMediaButtons(),
               const SizedBox(height: 16),
@@ -300,16 +320,16 @@ class Footer extends StatelessWidget {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 56),
-                    FooterLinks(kGridStyle: kGridStyle),
-                    const SizedBox(height: 24),
-                    const FooterButtons(),
-                    const SizedBox(height: 40),
-                    const FooterSocialMediaButtons(),
-                    const SizedBox(height: 24),
-                    const CopyrightText(),
-                    const SizedBox(height: 64),
+                  children: const [
+                    SizedBox(height: 56),
+                    FooterLinks(),
+                    SizedBox(height: 24),
+                    FooterButtons(),
+                    SizedBox(height: 40),
+                    FooterSocialMediaButtons(),
+                    SizedBox(height: 24),
+                    CopyrightText(),
+                    SizedBox(height: 64),
                   ],
                 ),
               ),
@@ -340,16 +360,16 @@ class Footer extends StatelessWidget {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 56),
-                    FooterLinks(kGridStyle: kGridStyle),
-                    const SizedBox(height: 24),
-                    const FooterButtons(),
-                    const SizedBox(height: 40),
-                    const FooterSocialMediaButtons(),
-                    const SizedBox(height: 24),
-                    const CopyrightText(),
-                    const SizedBox(height: 64),
+                  children: const [
+                    SizedBox(height: 56),
+                    FooterLinks(),
+                    SizedBox(height: 24),
+                    FooterButtons(),
+                    SizedBox(height: 40),
+                    FooterSocialMediaButtons(),
+                    SizedBox(height: 24),
+                    CopyrightText(),
+                    SizedBox(height: 64),
                   ],
                 ),
               ),
@@ -423,10 +443,8 @@ class FooterButtons extends StatelessWidget {
 class FooterLinks extends StatelessWidget {
   const FooterLinks({
     Key? key,
-    required this.kGridStyle,
+    
   }) : super(key: key);
-
-  final TextStyle kGridStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -435,45 +453,44 @@ class FooterLinks extends StatelessWidget {
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Careers', style: kGridStyle),
-            const SizedBox(height: 12),
-            Text('Blog', style: kGridStyle),
-            const SizedBox(height: 12),
-            Text('Status', style: kGridStyle),
+          children: const [
+            FooterLinkButton(text: 'Careers',),
+            SizedBox(height: 12),
+            FooterLinkButton(text: 'Blog',),
+            SizedBox(height: 12),
+            FooterLinkButton(text: 'Status',),],
+        ),
+        Expanded(child: Container()),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            FooterLinkButton(text: 'Security',),
+            SizedBox(height: 12),
+            FooterLinkButton(text: 'Contact us',),
+            SizedBox(height: 12),
+            FooterLinkButton(text: 'Help Center',),
           ],
         ),
         Expanded(child: Container()),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Security', style: kGridStyle),
-            const SizedBox(height: 12),
-            Text('Contact Us', style: kGridStyle),
-            const SizedBox(height: 12),
-            Text('Help Center', style: kGridStyle),
+          children: const [
+            FooterLinkButton(text: 'Terms of use',),
+            SizedBox(height: 12),
+            FooterLinkButton(text: 'Privacy Policy',),
+            SizedBox(height: 12),
+            FooterLinkButton(text: 'Cookie Policy',),
           ],
         ),
         Expanded(child: Container()),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Terms of use', style: kGridStyle),
-            const SizedBox(height: 12),
-            Text('Privacy Policy', style: kGridStyle),
-            const SizedBox(height: 12),
-            Text('Cookie Policy', style: kGridStyle),
-          ],
-        ),
-        Expanded(child: Container()),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('AML/KYC Policy', style: kGridStyle),
-            const SizedBox(height: 12),
-            Text('Licenses', style: kGridStyle),
-            const SizedBox(height: 12),
-            Text('Media', style: kGridStyle),
+          children: const [
+            FooterLinkButton(text: 'AML/KYC Policy',),
+            SizedBox(height: 12),
+            FooterLinkButton(text: 'Licenses',),
+            SizedBox(height: 12),
+            FooterLinkButton(text: 'Media',),
           ],
         ),
         Expanded(child: Container()),
@@ -489,61 +506,90 @@ class LargeLandingText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).size.width < kSmallScreen) {
+    double screenWidth;
+    double screenWidthFunc(BuildContext context) =>
+        MediaQuery.of(context).size.width;
+    screenWidth = screenWidthFunc(context);
+
+    if (screenWidth < 340) {
+      return Padding(
+          padding: const EdgeInsets.only(top: 80, bottom: 30),
+          child: Text(
+            'Crypto just got easy',
+            // style: GoogleFonts.montserrat(
+            //     textStyle: const TextStyle(
+            //   //letterSpacing: .5,
+            //   fontSize: 52.8,
+            //   height: 1.2,
+            //   fontWeight: FontWeight.w600,
+            // )),
+            // textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 52.8,
+              height: 1.2,
+              fontFamily: kLogoFont,
+              fontWeight: FontWeight.w600,
+            ),
+          ));
+    }
+    if (screenWidth < kSmallScreen) {
       return Padding(
           padding: const EdgeInsets.only(top: 80, bottom: 30),
           child: Text(
             'Crypto just\n got easy',
-            style: GoogleFonts.montserrat(
-                textStyle: const TextStyle(
-              //letterSpacing: .5,
+            // style: GoogleFonts.montserrat(
+            //     textStyle: const TextStyle(
+            //   //letterSpacing: .5,
+            //   fontSize: 52.8,
+            //   height: 1.2,
+            //   fontWeight: FontWeight.w600,
+            // )),
+            style: TextStyle(
               fontSize: 52.8,
               height: 1.2,
+              fontFamily: kLogoFont,
               fontWeight: FontWeight.w600,
-            )),
-            // style: TextStyle(
-            //   fontSize: 53,
-            //   height: 1.2,
-            //   fontFamily: kLogoFont,
-            //   fontWeight: FontWeight.w900,
-            // ),
+            ),
           ));
     }
-    if (MediaQuery.of(context).size.width < kMediumScreen) {
+    if (screenWidth < 1280) {
       return Padding(
           padding: const EdgeInsets.only(bottom: 32),
           child: Text(
             'Crypto just\n got easy',
-            style: GoogleFonts.montserrat(
-                textStyle: const TextStyle(
-              //letterSpacing: .5,
+            // style: GoogleFonts.montserrat(
+            //     textStyle: const TextStyle(
+            //   //letterSpacing: .5,
+            //   fontSize: 72,
+            //   height: 0.9,
+            //   fontWeight: FontWeight.w600,
+            // )),
+            style: TextStyle(
               fontSize: 72,
               height: 0.9,
+              fontFamily: kLogoFont,
               fontWeight: FontWeight.w600,
-            )),
-            // style: TextStyle(
-            //   fontSize: 53,
-            //   height: 1.2,
-            //   fontFamily: kLogoFont,
-            //   fontWeight: FontWeight.w900,
-            // ),
+            ),
           ));
     } else {
-      return Text(
-        'Crypto just\n got easy',
-        style: GoogleFonts.montserrat(
-            textStyle: const TextStyle(
-          //letterSpacing: .5,
-          fontSize: 88,
-          height: 1.2,
-          fontWeight: FontWeight.w600,
-        )),
-        // style: TextStyle(
-        //   fontSize: 53,
-        //   height: 1.2,
-        //   fontFamily: kLogoFont,
-        //   fontWeight: FontWeight.w900,
-        // ),
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 32),
+        child: Text(
+          'Crypto just\n got easy',
+          // style: GoogleFonts.montserrat(
+          //     textStyle: const TextStyle(
+          //   //letterSpacing: .5,
+          //   fontSize: 88,
+          //   height: 0.9,
+          //   fontWeight: FontWeight.w600,
+          // )),
+          style: TextStyle(
+            fontSize: 88,
+            height: 0.9,
+            fontFamily: kLogoFont,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       );
     }
   }
@@ -556,7 +602,23 @@ class SmallLandingText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    double screenWidth;
+    double screenWidthFunc(BuildContext context) =>
+        MediaQuery.of(context).size.width;
+    screenWidth = screenWidthFunc(context);
+    if(screenWidth<482){return const Padding(
+        padding: EdgeInsets.only(bottom: 24),
+        child: Text(
+          'A fast and simple way to buy and sell crypto',
+          style: TextStyle(
+            fontSize: 20,
+            color: Color(0xFF3A414B),
+          ),
+          textAlign:TextAlign.center,
+        ));
+  }
+  else {
+      return const Padding(
         padding: EdgeInsets.only(bottom: 24),
         child: Text(
           'A fast and simple way to buy and sell crypto',
@@ -565,6 +627,7 @@ class SmallLandingText extends StatelessWidget {
             color: Color(0xFF3A414B),
           ),
         ));
+    }
   }
 }
 
@@ -575,7 +638,57 @@ class TinyLandingText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    double screenWidth;
+    double screenWidthFunc(BuildContext context) =>
+        MediaQuery.of(context).size.width;
+    screenWidth = screenWidthFunc(context);
+    if (screenWidth < 355) {
+      return Column(children: [Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          'Trusted by 10M+ people',
+          style: TextStyle(
+            fontSize: 16,
+            color: Color(0xFF6b6f78),
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 6),
+          decoration: BoxDecoration(
+            color: const Color(0xFF00b67a),
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: Padding(
+              padding: const EdgeInsets.symmetric(
+                // vertical: 4,
+                horizontal: 6,
+              ),
+              child: Text(
+                '4.1/5',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: kBackgroundColour,
+                ),
+              )),
+        ),
+        ],
+    ),
+    const SizedBox(height:1),
+    Container(
+          height: 22.0,
+          width: 65.5,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(trustpilot),
+              // fit: BoxFit.fill,
+            ),
+          ),
+        ),
+      
+  ],);
+    }else {
+      return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text(
@@ -619,6 +732,7 @@ class TinyLandingText extends StatelessWidget {
         ),
       ],
     );
+    }
   }
 }
 
@@ -715,374 +829,242 @@ class GetStartedSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).size.width < kTabletScreen) {
-      double _width = 239;
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Container(
-          width: 686.0,
-          //height: 258,
-          decoration: BoxDecoration(
-            color: kMainColour,
-            borderRadius: BorderRadius.circular(24),
-          ),
-          child: Padding(
-            padding:
-                const EdgeInsets.only(top: 48, bottom: 24, left: 8, right: 8),
-            child: Column(
-              children: [
-                Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 32,
-                      left: 16,
-                      right: 16,
-                    ),
-                    child: Text(
-                      'Get Started',
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: kBackgroundColour,
-                      ),
-                    )),
-                SizedBox(
-                  //width: 600,
-                  //height: 188,
-                  child: Column(
-                    children: [
-                      BuyCoinsButton(
-                        text: 'Buy Bitcoin',
-                        cryptoIcon: CryptoFontIcons.BTC,
-                        color: const Color.fromRGBO(255, 153, 0, 1),
-                        width: _width,
-                      ),
-                      const SizedBox(height: 16),
-                      BuyCoinsButton(
-                        text: 'Buy Tether',
-                        cryptoIcon: CryptoFontIcons.USDT,
-                        color: const Color.fromRGBO(38, 161, 123, 1),
-                        width: _width,
-                      ),
-                      const SizedBox(height: 16),
-                      BuyCoinsButton(
-                        text: 'Buy Binance Coin',
-                        cryptoIcon: CryptoFontIcons.BSD,
-                        color: const Color.fromRGBO(243, 186, 47, 1),
-                        width: _width,
-                      ),
-                      const SizedBox(height: 16),
-                      BuyCoinsButton(
-                        text: 'Buy Ethereum',
-                        cryptoIcon: CryptoFontIcons.ETH,
-                        color: const Color.fromRGBO(98, 126, 234, 1),
-                        width: _width,
-                      ),
-                      const SizedBox(height: 16),
-                      BuyCoinsButton(
-                        text: 'Buy Litecoin',
-                        cryptoIcon: CryptoFontIcons.LTC,
-                        color: const Color.fromRGBO(191, 187, 187, 1),
-                        width: _width,
-                      ),
-                      const SizedBox(height: 16),
-                      BuyCoinsButton(
-                        text: 'Buy Solana',
-                        cryptoIcon: CryptoFontIcons.SLS,
-                        color: const Color.fromRGBO(0, 0, 0, 1),
-                        width: _width,
-                      ),
-                    ],
+    double screenWidth;
+    double screenWidthFunc(BuildContext context) =>
+        MediaQuery.of(context).size.width;
+    screenWidth = screenWidthFunc(context);
+    if (screenWidth < kTabletScreen) {
+      return Container(
+        constraints: BoxConstraints(
+          minWidth: screenWidth - 40,
+        ),
+        decoration: BoxDecoration(
+          color: kMainColour,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Padding(
+          padding:
+              const EdgeInsets.only(top: 48, bottom: 24, left: 8, right: 8),
+          child: Column(
+            children: [
+              Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 32,
+                    left: 16,
+                    right: 16,
                   ),
-                ),
-              ],
-            ),
+                  child: Text(
+                    'Get Started',
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: kBackgroundColour,
+                    ),
+                  )),
+              Column(
+                children: const [
+                  BuyCoinsButton(
+                    text: 'Buy Bitcoin',
+                    cryptoIcon: CryptoFontIcons.BTC,
+                    color: Color.fromRGBO(255, 153, 0, 1),
+                  ),
+                  SizedBox(height: 16),
+                  BuyCoinsButton(
+                    text: 'Buy Tether',
+                    cryptoIcon: CryptoFontIcons.USDT,
+                    color: Color.fromRGBO(38, 161, 123, 1),
+                  ),
+                  SizedBox(height: 16),
+                  BuyCoinsButton(
+                    text: 'Buy Binance Coin',
+                    cryptoIcon: CryptoFontIcons.BSD,
+                    color: Color.fromRGBO(243, 186, 47, 1),
+                  ),
+                  SizedBox(height: 16),
+                  BuyCoinsButton(
+                    text: 'Buy Ethereum',
+                    cryptoIcon: CryptoFontIcons.ETH,
+                    color: Color.fromRGBO(98, 126, 234, 1),
+                  ),
+                  SizedBox(height: 16),
+                  BuyCoinsButton(
+                    text: 'Buy Litecoin',
+                    cryptoIcon: CryptoFontIcons.LTC,
+                    color: Color.fromRGBO(191, 187, 187, 1),
+                  ),
+                  SizedBox(height: 16),
+                  BuyCoinsButton(
+                    text: 'Buy Solana',
+                    cryptoIcon: CryptoFontIcons.SLS,
+                    color: Color.fromRGBO(0, 0, 0, 1),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       );
     }
-    if (MediaQuery.of(context).size.width < kSmallScreen) {
-      double _width = 239;
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Container(
-          width: 686.0,
-          //height: 258,
-          decoration: BoxDecoration(
-            color: kMainColour,
-            borderRadius: BorderRadius.circular(24),
-          ),
-          child: Padding(
-            padding:
-                const EdgeInsets.only(top: 48, bottom: 24, left: 8, right: 8),
-            child: Column(
-              children: [
-                Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 32,
-                      left: 16,
-                      right: 16,
-                    ),
-                    child: Text(
-                      'Get Started',
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: kBackgroundColour,
-                      ),
-                    )),
-                SizedBox(
-                  //width: 600,
-                  //height: 188,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Column(
-                        children: [
-                          BuyCoinsButton(
-                            text: 'Buy Bitcoin',
-                            cryptoIcon: CryptoFontIcons.BTC,
-                            color: const Color.fromRGBO(255, 153, 0, 1),
-                            width: _width,
-                          ),
-                          const SizedBox(height: 16),
-                          BuyCoinsButton(
-                            text: 'Buy Tether',
-                            cryptoIcon: CryptoFontIcons.USDT,
-                            color: const Color.fromRGBO(38, 161, 123, 1),
-                            width: _width,
-                          ),
-                          const SizedBox(height: 16),
-                          BuyCoinsButton(
-                            text: 'Buy Binance Coin',
-                            cryptoIcon: CryptoFontIcons.BSD,
-                            color: const Color.fromRGBO(243, 186, 47, 1),
-                            width: _width,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(width: 16),
-                      Column(
-                        children: [
-                          BuyCoinsButton(
-                            text: 'Buy Ethereum',
-                            cryptoIcon: CryptoFontIcons.ETH,
-                            color: const Color.fromRGBO(98, 126, 234, 1),
-                            width: _width,
-                          ),
-                          const SizedBox(height: 16),
-                          BuyCoinsButton(
-                            text: 'Buy Litecoin',
-                            cryptoIcon: CryptoFontIcons.LTC,
-                            color: const Color.fromRGBO(191, 187, 187, 1),
-                            width: _width,
-                          ),
-                          const SizedBox(height: 16),
-                          BuyCoinsButton(
-                            text: 'Buy Solana',
-                            cryptoIcon: CryptoFontIcons.SLS,
-                            color: const Color.fromRGBO(0, 0, 0, 1),
-                            width: _width,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+    if (screenWidth < kSmallScreen) {
+      return Container(
+        constraints: BoxConstraints(
+          minWidth: screenWidth - 40,
         ),
-      );
-    }
-    if (MediaQuery.of(context).size.width < kMediumScreen) {
-      double _width = 205;
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Container(
-          //width: 686.0,
-          //height: 258,
-          decoration: BoxDecoration(
-            color: kMainColour,
-            borderRadius: BorderRadius.circular(24),
-          ),
-          child: Padding(
-            padding:
-                const EdgeInsets.only(top: 48, bottom: 24, left: 8, right: 8),
-            child: Column(
-              children: [
-                Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 32,
-                      left: 16,
-                      right: 16,
+        decoration: BoxDecoration(
+          color: kMainColour,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Padding(
+          padding:
+              const EdgeInsets.only(top: 48, bottom: 24, left: 8, right: 8),
+          child: Column(
+            children: [
+              Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 32,
+                    left: 16,
+                    right: 16,
+                  ),
+                  child: Text(
+                    'Get Started',
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: kBackgroundColour,
                     ),
-                    child: Text(
-                      'Get Started',
-                      style: TextStyle(
-                        fontSize: 36,
-                        color: kBackgroundColour,
-                      ),
-                    )),
-                SizedBox(
-                  //width: 600,
-                  //height: 188,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 55.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            BuyCoinsButton(
-                              text: 'Buy Bitcoin',
-                              cryptoIcon: CryptoFontIcons.BTC,
-                              color: const Color.fromRGBO(255, 153, 0, 1),
-                              width: _width,
-                            ),
-                            const SizedBox(width: 22),
-                            BuyCoinsButton(
-                              text: 'Buy Ethereum',
-                              cryptoIcon: CryptoFontIcons.ETH,
-                              color: const Color.fromRGBO(98, 126, 234, 1),
-                              width: _width,
-                            ),
-                            const SizedBox(width: 22),
-                            BuyCoinsButton(
-                              text: 'Buy Tether',
-                              cryptoIcon: CryptoFontIcons.USDT,
-                              color: const Color.fromRGBO(38, 161, 123, 1),
-                              width: _width,
-                            ),
-                          ],
+                  )),
+              SizedBox(
+                //width: 600,
+                //height: 188,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: const [
+                        BuyCoinsButton(
+                          text: 'Buy Bitcoin',
+                          cryptoIcon: CryptoFontIcons.BTC,
+                          color: Color.fromRGBO(255, 153, 0, 1),
                         ),
-                        const SizedBox(height: 22),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            BuyCoinsButton(
-                              text: 'Buy Litecoin',
-                              cryptoIcon: CryptoFontIcons.LTC,
-                              color: const Color.fromRGBO(191, 187, 187, 1),
-                              width: _width,
-                            ),
-                            const SizedBox(width: 22),
-                            BuyCoinsButton(
-                              text: 'Buy Binance Coin',
-                              cryptoIcon: CryptoFontIcons.BSD,
-                              color: const Color.fromRGBO(243, 186, 47, 1),
-                              width: _width,
-                            ),
-                            const SizedBox(width: 22),
-                            BuyCoinsButton(
-                              text: 'Buy Solana',
-                              cryptoIcon: CryptoFontIcons.SLS,
-                              color: const Color.fromRGBO(0, 0, 0, 1),
-                              width: _width,
-                            ),
-                          ],
+                        SizedBox(height: 16),
+                        BuyCoinsButton(
+                          text: 'Buy Tether',
+                          cryptoIcon: CryptoFontIcons.USDT,
+                          color: Color.fromRGBO(38, 161, 123, 1),
+                        ),
+                        SizedBox(height: 16),
+                        BuyCoinsButton(
+                          text: 'Buy Binance Coin',
+                          cryptoIcon: CryptoFontIcons.BSD,
+                          color: Color.fromRGBO(243, 186, 47, 1),
                         ),
                       ],
                     ),
-                  ),
+                    const SizedBox(width: 16),
+                    Column(
+                      children: const [
+                        BuyCoinsButton(
+                          text: 'Buy Ethereum',
+                          cryptoIcon: CryptoFontIcons.ETH,
+                          color: Color.fromRGBO(98, 126, 234, 1),
+                        ),
+                        SizedBox(height: 16),
+                        BuyCoinsButton(
+                          text: 'Buy Litecoin',
+                          cryptoIcon: CryptoFontIcons.LTC,
+                          color: Color.fromRGBO(191, 187, 187, 1),
+                        ),
+                        SizedBox(height: 16),
+                        BuyCoinsButton(
+                          text: 'Buy Solana',
+                          cryptoIcon: CryptoFontIcons.SLS,
+                          color: Color.fromRGBO(0, 0, 0, 1),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       );
     } else {
-      double _width = 205;
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 60.0),
-        child: Container(
-          //width: 686.0,
-          //height: 258,
-          decoration: BoxDecoration(
-            color: kMainColour,
-            borderRadius: BorderRadius.circular(24),
-          ),
-          child: Padding(
-            padding:
-                const EdgeInsets.only(top: 48, bottom: 24, left: 8, right: 8),
-            child: Column(
-              children: [
-                Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 32,
-                      left: 16,
-                      right: 16,
-                    ),
-                    child: Text(
-                      'Get Started',
-                      style: TextStyle(
-                        fontSize: 36,
-                        color: kBackgroundColour,
-                      ),
-                    )),
-                SizedBox(
-                  //width: 600,
-                  //height: 188,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 55.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            BuyCoinsButton(
-                              text: 'Buy Bitcoin',
-                              cryptoIcon: CryptoFontIcons.BTC,
-                              color: const Color.fromRGBO(255, 153, 0, 1),
-                              width: _width,
-                            ),
-                            const SizedBox(width: 22),
-                            BuyCoinsButton(
-                              text: 'Buy Ethereum',
-                              cryptoIcon: CryptoFontIcons.ETH,
-                              color: const Color.fromRGBO(98, 126, 234, 1),
-                              width: _width,
-                            ),
-                            const SizedBox(width: 22),
-                            BuyCoinsButton(
-                              text: 'Buy Tether',
-                              cryptoIcon: CryptoFontIcons.USDT,
-                              color: const Color.fromRGBO(38, 161, 123, 1),
-                              width: _width,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 22),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            BuyCoinsButton(
-                              text: 'Buy Litecoin',
-                              cryptoIcon: CryptoFontIcons.LTC,
-                              color: const Color.fromRGBO(191, 187, 187, 1),
-                              width: _width,
-                            ),
-                            const SizedBox(width: 22),
-                            BuyCoinsButton(
-                              text: 'Buy Binance Coin',
-                              cryptoIcon: CryptoFontIcons.BSD,
-                              color: const Color.fromRGBO(243, 186, 47, 1),
-                              width: _width,
-                            ),
-                            const SizedBox(width: 22),
-                            BuyCoinsButton(
-                              text: 'Buy Solana',
-                              cryptoIcon: CryptoFontIcons.SLS,
-                              color: const Color.fromRGBO(0, 0, 0, 1),
-                              width: _width,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+      return Container(
+        constraints: BoxConstraints(
+          minWidth: screenWidth - 40,
+        ),
+        decoration: BoxDecoration(
+          color: kMainColour,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Padding(
+          padding:
+              const EdgeInsets.only(top: 48, bottom: 24, left: 8, right: 8),
+          child: Column(
+            children: [
+              Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 32,
+                    left: 16,
+                    right: 16,
                   ),
-                ),
-              ],
-            ),
+                  child: Text(
+                    'Get Started',
+                    style: TextStyle(
+                      fontSize: 36,
+                      color: kBackgroundColour,
+                    ),
+                  )),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: const [
+                      BuyCoinsButton(
+                        text: 'Buy Bitcoin',
+                        cryptoIcon: CryptoFontIcons.BTC,
+                        color: Color.fromRGBO(255, 153, 0, 1),
+                      ),
+                      SizedBox(width: 22),
+                      BuyCoinsButton(
+                        text: 'Buy Ethereum',
+                        cryptoIcon: CryptoFontIcons.ETH,
+                        color: Color.fromRGBO(98, 126, 234, 1),
+                      ),
+                      SizedBox(width: 22),
+                      BuyCoinsButton(
+                        text: 'Buy Tether',
+                        cryptoIcon: CryptoFontIcons.USDT,
+                        color: Color.fromRGBO(38, 161, 123, 1),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 22),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: const [
+                      BuyCoinsButton(
+                        text: 'Buy Litecoin',
+                        cryptoIcon: CryptoFontIcons.LTC,
+                        color: Color.fromRGBO(191, 187, 187, 1),
+                      ),
+                      SizedBox(width: 22),
+                      BuyCoinsButton(
+                        text: 'Buy Binance Coin',
+                        cryptoIcon: CryptoFontIcons.BSD,
+                        color: Color.fromRGBO(243, 186, 47, 1),
+                      ),
+                      SizedBox(width: 22),
+                      BuyCoinsButton(
+                        text: 'Buy Solana',
+                        cryptoIcon: CryptoFontIcons.SLS,
+                        color: Color.fromRGBO(0, 0, 0, 1),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       );
@@ -1224,129 +1206,126 @@ class SubscribeForm extends StatelessWidget {
           height: 22,
         ),
       ]);
-    }
-    else {
+    } else {
       return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Text(
-          'Subscribe to our newsletter',
-          style: TextStyle(
-            fontSize: 16,
-            color: kBackgroundColour,
-            fontWeight: FontWeight.w700,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(
+            'Subscribe to our newsletter',
+            style: TextStyle(
+              fontSize: 16,
+              color: kBackgroundColour,
+              fontWeight: FontWeight.w700,
+            ),
           ),
-        ),
-        const SizedBox(height: 24),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Email',
-              style: TextStyle(
-                fontSize: 16,
-                color: kBackgroundColour,
-              ),
-            ),
-            const Text(
-              '*',
-              style: TextStyle(
-                fontSize: 16,
-                color: Color(0xFFCD4262),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(
-          child: TextField(
-              cursorColor: kBackgroundColour,
-              style: TextStyle(fontSize: 20, color: kBackgroundColour),
-              decoration: InputDecoration(
-                  focusColor: kBackgroundColour,
-                  fillColor: const Color.fromARGB(255, 93, 93, 93),
-                  filled: true,
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.all(Radius.circular(40.0)),
-                  ))),
-        ),
-        const SizedBox(height: 24),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              flex:1,
-              child: MaterialButton(
-                onPressed: () {},
-                color: kBackgroundColour,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40)),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 32.0,
-                    vertical: 16.0,
-                  ),
-                  child: SizedBox(
-                      width: 163.5,
-                      height: 26.0,
-                      child: Center(
-                          child: Text(
-                        'Subscribe',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          color: kBlackColour,
-                        ),
-                      ))),
+          const SizedBox(height: 24),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Email',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: kBackgroundColour,
                 ),
               ),
-            ),
-            const SizedBox(width: 24),
-            Expanded(
-              flex:1,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Theme(
-                    data: Theme.of(context).copyWith(
-                      unselectedWidgetColor: kBackgroundColour,
-                      primaryColor: kBackgroundColour,
+              const Text(
+                '*',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFFCD4262),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            child: TextField(
+                cursorColor: kBackgroundColour,
+                style: TextStyle(fontSize: 20, color: kBackgroundColour),
+                decoration: InputDecoration(
+                    focusColor: kBackgroundColour,
+                    fillColor: const Color.fromARGB(255, 93, 93, 93),
+                    filled: true,
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                    ))),
+          ),
+          const SizedBox(height: 24),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 1,
+                child: MaterialButton(
+                  onPressed: () {},
+                  color: kBackgroundColour,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40)),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 32.0,
+                      vertical: 16.0,
                     ),
                     child: SizedBox(
-                      width: 22,
-                      height: 22,
-                      child: Checkbox(
-                        checkColor: kBackgroundColour,
-                        activeColor: kBackgroundColour,
-                        value: false,
-                        onChanged: (value) {},
-                        shape: RoundedRectangleBorder(
-                            side: const BorderSide(width: 0.5),
-                            borderRadius: BorderRadius.circular(4)),
-                      ),
-                    ),
+                        width: 163.5,
+                        height: 26.0,
+                        child: Center(
+                            child: Text(
+                          'Subscribe',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: kBlackColour,
+                          ),
+                        ))),
                   ),
-                  const SizedBox(width: 16),
-                  const Expanded(
-                    child: Text(
-                      'Check this box to receive communications from MoonPay.'
-                      'You can unsubscribe at any time. We look after your data '
-                      '- see our privacy policy.*',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xFFCCCCCC),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
-    );
-  
+              const SizedBox(width: 24),
+              Expanded(
+                flex: 1,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Theme(
+                      data: Theme.of(context).copyWith(
+                        unselectedWidgetColor: kBackgroundColour,
+                        primaryColor: kBackgroundColour,
+                      ),
+                      child: SizedBox(
+                        width: 22,
+                        height: 22,
+                        child: Checkbox(
+                          checkColor: kBackgroundColour,
+                          activeColor: kBackgroundColour,
+                          value: false,
+                          onChanged: (value) {},
+                          shape: RoundedRectangleBorder(
+                              side: const BorderSide(width: 0.5),
+                              borderRadius: BorderRadius.circular(4)),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    const Expanded(
+                      child: Text(
+                        'Check this box to receive communications from MoonPay.'
+                        'You can unsubscribe at any time. We look after your data '
+                        '- see our privacy policy.*',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color(0xFFCCCCCC),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      );
     }
   }
 }
-
