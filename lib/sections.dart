@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moonpay_clone/constants.dart';
 import 'package:moonpay_clone/elements.dart';
-//import 'package:google_fonts/google_fonts.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:crypto_font_icons/crypto_font_icons.dart';
 
@@ -43,55 +43,18 @@ class NavBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const NavBarLogo(),
-            SizedBox(
-              //width: 262,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children:  [
-                  const NavBarButton(text: 'Buy Crypto'),
-                  // NavBarButton(text: 'Business \u{25BC}'),
-                  MaterialButton(
-                    elevation: 0,
-                    onPressed: () {},
-                    color: kBackgroundColour,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 15,
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            'Business',
-                            style: TextStyle(
-                                fontSize: 16.0, color: kBlackColour),
-                          ),
-                          const Icon(
-                            Icons.arrow_drop_down_outlined,
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-  
-                ],
-              ),
-            ),
+            const NavBarDoubleButton(),
             Expanded(
               child: Container(),
             ),
-            SizedBox(
-              width: 516,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: const [
-                  NavBarButton(text: 'About Us'),
-                  NavBarButton(text: 'Career'),
-                  NavBarButton(text: 'Blog'),
-                  NavBarButton(text: 'Help Center'),
-                ],
-              ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                NavBarButton(text: 'About Us'),
+                NavBarButton(text: 'Career'),
+                NavBarButton(text: 'Blog'),
+                NavBarButton(text: 'Help Center'),
+              ],
             ),
           ],
         ),
@@ -103,31 +66,18 @@ class NavBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const NavBarLogo(),
-            SizedBox(
-              width: 262,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: const [
-                  NavBarButton(text: 'Buy Crypto'),
-                  NavBarButton(text: 'Business'),
-                  // NavBarButton(text: 'Business \u{25BC}'),
-                ],
-              ),
-            ),
+            const NavBarDoubleButton(),
             Expanded(
               child: Container(),
             ),
-            SizedBox(
-              width: 516,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: const [
-                  NavBarButton(text: 'About Us'),
-                  NavBarButton(text: 'Career'),
-                  NavBarButton(text: 'Blog'),
-                  NavBarButton(text: 'Help Center'),
-                ],
-              ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                NavBarButton(text: 'About Us'),
+                NavBarButton(text: 'Career'),
+                NavBarButton(text: 'Blog'),
+                NavBarButton(text: 'Help Center'),
+              ],
             ),
           ],
         ),
@@ -453,44 +403,44 @@ class FooterLinks extends StatelessWidget {
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            FooterLinkButton(text: 'Careers',),
-            SizedBox(height: 12),
-            FooterLinkButton(text: 'Blog',),
-            SizedBox(height: 12),
-            FooterLinkButton(text: 'Status',),],
+          children:  [
+            const FooterLinkButton(text: 'Careers',),
+            const SizedBox(height: 12),
+            const FooterLinkButton(text: 'Blog',),
+            const SizedBox(height: 12),
+            const FooterLinkButton(text: 'Status',),],
         ),
         Expanded(child: Container()),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            FooterLinkButton(text: 'Security',),
-            SizedBox(height: 12),
-            FooterLinkButton(text: 'Contact us',),
-            SizedBox(height: 12),
-            FooterLinkButton(text: 'Help Center',),
+          children:  [
+            const FooterLinkButton(text: 'Security',),
+            const SizedBox(height: 12),
+            const FooterLinkButton(text: 'Contact us',),
+            const SizedBox(height: 12),
+            const FooterLinkButton(text: 'Help Center',),
           ],
         ),
         Expanded(child: Container()),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            FooterLinkButton(text: 'Terms of use',),
-            SizedBox(height: 12),
-            FooterLinkButton(text: 'Privacy Policy',),
-            SizedBox(height: 12),
-            FooterLinkButton(text: 'Cookie Policy',),
+          children:  [
+            const FooterLinkButton(text: 'Terms of use',),
+            const SizedBox(height: 12),
+            const FooterLinkButton(text: 'Privacy Policy',),
+            const SizedBox(height: 12),
+            const FooterLinkButton(text: 'Cookie Policy',),
           ],
         ),
         Expanded(child: Container()),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            FooterLinkButton(text: 'AML/KYC Policy',),
-            SizedBox(height: 12),
-            FooterLinkButton(text: 'Licenses',),
-            SizedBox(height: 12),
-            FooterLinkButton(text: 'Media',),
+          children:  [
+            const FooterLinkButton(text: 'AML/KYC Policy',),
+            const SizedBox(height: 12),
+            const FooterLinkButton(text: 'Licenses',),
+            const SizedBox(height: 12),
+            const FooterLinkButton(text: 'Media',),
           ],
         ),
         Expanded(child: Container()),
@@ -516,14 +466,6 @@ class LargeLandingText extends StatelessWidget {
           padding: const EdgeInsets.only(top: 80, bottom: 30),
           child: Text(
             'Crypto just got easy',
-            // style: GoogleFonts.montserrat(
-            //     textStyle: const TextStyle(
-            //   //letterSpacing: .5,
-            //   fontSize: 52.8,
-            //   height: 1.2,
-            //   fontWeight: FontWeight.w600,
-            // )),
-            // textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 52.8,
               height: 1.2,
@@ -537,13 +479,6 @@ class LargeLandingText extends StatelessWidget {
           padding: const EdgeInsets.only(top: 80, bottom: 30),
           child: Text(
             'Crypto just\n got easy',
-            // style: GoogleFonts.montserrat(
-            //     textStyle: const TextStyle(
-            //   //letterSpacing: .5,
-            //   fontSize: 52.8,
-            //   height: 1.2,
-            //   fontWeight: FontWeight.w600,
-            // )),
             style: TextStyle(
               fontSize: 52.8,
               height: 1.2,
@@ -557,13 +492,6 @@ class LargeLandingText extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 32),
           child: Text(
             'Crypto just\n got easy',
-            // style: GoogleFonts.montserrat(
-            //     textStyle: const TextStyle(
-            //   //letterSpacing: .5,
-            //   fontSize: 72,
-            //   height: 0.9,
-            //   fontWeight: FontWeight.w600,
-            // )),
             style: TextStyle(
               fontSize: 72,
               height: 0.9,
@@ -576,13 +504,6 @@ class LargeLandingText extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 32),
         child: Text(
           'Crypto just\n got easy',
-          // style: GoogleFonts.montserrat(
-          //     textStyle: const TextStyle(
-          //   //letterSpacing: .5,
-          //   fontSize: 88,
-          //   height: 0.9,
-          //   fontWeight: FontWeight.w600,
-          // )),
           style: TextStyle(
             fontSize: 88,
             height: 0.9,
@@ -865,37 +786,37 @@ class GetStartedSection extends StatelessWidget {
                   BuyCoinsButton(
                     text: 'Buy Bitcoin',
                     cryptoIcon: CryptoFontIcons.BTC,
-                    color: Color.fromRGBO(255, 153, 0, 1),
+                    color: Color(0xffff9900),
                   ),
                   SizedBox(height: 16),
                   BuyCoinsButton(
                     text: 'Buy Tether',
                     cryptoIcon: CryptoFontIcons.USDT,
-                    color: Color.fromRGBO(38, 161, 123, 1),
+                    color: Color(0xFF26a17a),
                   ),
                   SizedBox(height: 16),
                   BuyCoinsButton(
                     text: 'Buy Binance Coin',
                     cryptoIcon: CryptoFontIcons.BSD,
-                    color: Color.fromRGBO(243, 186, 47, 1),
+                    color: Color(0xFFf3ba2f),
                   ),
                   SizedBox(height: 16),
                   BuyCoinsButton(
                     text: 'Buy Ethereum',
                     cryptoIcon: CryptoFontIcons.ETH,
-                    color: Color.fromRGBO(98, 126, 234, 1),
+                    color: Color(0xFF627dea),
                   ),
                   SizedBox(height: 16),
                   BuyCoinsButton(
                     text: 'Buy Litecoin',
                     cryptoIcon: CryptoFontIcons.LTC,
-                    color: Color.fromRGBO(191, 187, 187, 1),
+                    color: Color(0xffbfbbbb),
                   ),
                   SizedBox(height: 16),
                   BuyCoinsButton(
                     text: 'Buy Solana',
                     cryptoIcon: CryptoFontIcons.SLS,
-                    color: Color.fromRGBO(0, 0, 0, 1),
+                    color: Color(0xff000000),
                   ),
                 ],
               ),
@@ -942,19 +863,19 @@ class GetStartedSection extends StatelessWidget {
                         BuyCoinsButton(
                           text: 'Buy Bitcoin',
                           cryptoIcon: CryptoFontIcons.BTC,
-                          color: Color.fromRGBO(255, 153, 0, 1),
+                          color: Color(0xffff9900),
                         ),
                         SizedBox(height: 16),
                         BuyCoinsButton(
                           text: 'Buy Tether',
                           cryptoIcon: CryptoFontIcons.USDT,
-                          color: Color.fromRGBO(38, 161, 123, 1),
+                          color: Color(0xFF26a17a),
                         ),
                         SizedBox(height: 16),
                         BuyCoinsButton(
                           text: 'Buy Binance Coin',
                           cryptoIcon: CryptoFontIcons.BSD,
-                          color: Color.fromRGBO(243, 186, 47, 1),
+                          color: Color(0xFFf3ba2f),
                         ),
                       ],
                     ),
@@ -964,19 +885,19 @@ class GetStartedSection extends StatelessWidget {
                         BuyCoinsButton(
                           text: 'Buy Ethereum',
                           cryptoIcon: CryptoFontIcons.ETH,
-                          color: Color.fromRGBO(98, 126, 234, 1),
+                          color: Color(0xFF627dea),
                         ),
                         SizedBox(height: 16),
                         BuyCoinsButton(
                           text: 'Buy Litecoin',
                           cryptoIcon: CryptoFontIcons.LTC,
-                          color: Color.fromRGBO(191, 187, 187, 1),
+                          color: Color(0xffbfbbbb),
                         ),
                         SizedBox(height: 16),
                         BuyCoinsButton(
                           text: 'Buy Solana',
                           cryptoIcon: CryptoFontIcons.SLS,
-                          color: Color.fromRGBO(0, 0, 0, 1),
+                          color: Color(0xff000000),
                         ),
                       ],
                     ),
@@ -1023,19 +944,19 @@ class GetStartedSection extends StatelessWidget {
                       BuyCoinsButton(
                         text: 'Buy Bitcoin',
                         cryptoIcon: CryptoFontIcons.BTC,
-                        color: Color.fromRGBO(255, 153, 0, 1),
+                        color: Color(0xffff9900),
                       ),
                       SizedBox(width: 22),
                       BuyCoinsButton(
                         text: 'Buy Ethereum',
                         cryptoIcon: CryptoFontIcons.ETH,
-                        color: Color.fromRGBO(98, 126, 234, 1),
+                        color: Color(0xFF627dea),
                       ),
                       SizedBox(width: 22),
                       BuyCoinsButton(
                         text: 'Buy Tether',
                         cryptoIcon: CryptoFontIcons.USDT,
-                        color: Color.fromRGBO(38, 161, 123, 1),
+                        color: Color(0xFF26a17a),
                       ),
                     ],
                   ),
@@ -1046,19 +967,19 @@ class GetStartedSection extends StatelessWidget {
                       BuyCoinsButton(
                         text: 'Buy Litecoin',
                         cryptoIcon: CryptoFontIcons.LTC,
-                        color: Color.fromRGBO(191, 187, 187, 1),
+                        color: Color(0xffbfbbbb),
                       ),
                       SizedBox(width: 22),
                       BuyCoinsButton(
                         text: 'Buy Binance Coin',
                         cryptoIcon: CryptoFontIcons.BSD,
-                        color: Color.fromRGBO(243, 186, 47, 1),
+                        color: Color(0xFFf3ba2f),
                       ),
                       SizedBox(width: 22),
                       BuyCoinsButton(
                         text: 'Buy Solana',
                         cryptoIcon: CryptoFontIcons.SLS,
-                        color: Color.fromRGBO(0, 0, 0, 1),
+                        color: Color(0xff000000),
                       ),
                     ],
                   ),
@@ -1142,7 +1063,7 @@ class SubscribeForm extends StatelessWidget {
             style: TextStyle(fontSize: 20, color: kBackgroundColour),
             decoration: InputDecoration(
                 focusColor: kBackgroundColour,
-                fillColor: const Color.fromARGB(255, 93, 93, 93),
+                fillColor: const Color(0xff5d5d5d),
                 filled: true,
                 border: const OutlineInputBorder(
                   borderSide: BorderSide.none,
@@ -1189,7 +1110,8 @@ class SubscribeForm extends StatelessWidget {
           onPressed: () {},
           color: kBackgroundColour,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(40)),
           child: SizedBox(
               width: 860,
               height: 58.0,
@@ -1245,7 +1167,7 @@ class SubscribeForm extends StatelessWidget {
                 style: TextStyle(fontSize: 20, color: kBackgroundColour),
                 decoration: InputDecoration(
                     focusColor: kBackgroundColour,
-                    fillColor: const Color.fromARGB(255, 93, 93, 93),
+                    fillColor: const Color(0xFF5D5D5D),
                     filled: true,
                     border: const OutlineInputBorder(
                       borderSide: BorderSide.none,
