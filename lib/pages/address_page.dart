@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:moonpay_clone/constants.dart';
-import 'package:moonpay_clone/sections.dart';
 
-class BuyCryptoPage extends StatelessWidget {
-  const BuyCryptoPage({Key? key}) : super(key: key);
+import '../constants.dart';
+import '../sections.dart';
+
+class AddressPage extends StatelessWidget {
+  const AddressPage({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class BuyCryptoPage extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: const [
-                  BuyCryptoPageBody(),
+                  AddressPageBody(),
                   BuyCryptoPageFooter(),
                   Footer(),
                 ],
@@ -31,3 +32,4 @@ class BuyCryptoPage extends StatelessWidget {
     );
   }
 }
+

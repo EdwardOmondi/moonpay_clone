@@ -15,6 +15,7 @@ String bitcoinImage = 'bitcoinImage.png';
 Color kBackgroundColour = const Color(0xFFFFFFFF);
 Color kMainColour = const Color(0xFF7D00FF);
 Color kBlackColour = const Color(0xFF111111);
+Color kTextFieldColour = const Color(0xffe9ebec);
 
 
  

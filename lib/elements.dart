@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:moonpay_clone/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:moonpay_clone/pages/buy_crypto_page.dart';
 
 class NavBarLogo extends StatelessWidget {
   const NavBarLogo({
@@ -236,7 +235,7 @@ class NavBarDoubleButton extends StatelessWidget {
         ),
         MaterialButton(
           elevation: 0,
-          onPressed: () {},
+          onPressed: null,
           color: kBackgroundColour,
           child: Padding(
             padding: EdgeInsets.symmetric(
@@ -270,7 +269,7 @@ class NavBarButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       elevation: 0,
-      onPressed: () {},
+      onPressed: null,
       color: kBackgroundColour,
       child: Padding(
         padding: const EdgeInsets.symmetric(
@@ -340,38 +339,12 @@ class BuyCryptoTextfield extends StatelessWidget {
     return Stack(
       alignment: Alignment.centerRight,
       children: [
-        TextField(
-          style: const TextStyle(
-            fontSize: 16,
-            
-          ),
-          cursorColor: Colors.black12,
-          cursorWidth: 1,
-          decoration: InputDecoration(
-            hintText: (placeholder), //hint text
-            hintStyle: const TextStyle(fontSize: 16, 
-            fontFamily: 'Sf'),
-            //focusColor: kMainColour,
-            fillColor: const Color(0xfff3f4f5),
-            filled: true,
-            border: const OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.all(Radius.circular(12.0)),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                width: 1,
-                color: kMainColour,
-              ),
-              borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-            ),
-          ),
-        ),
+        kMyTextField(placeholder: placeholder),
         Container(
           width: 144,
           height: 53,
           decoration: const BoxDecoration(
-            color: Color(0xffe9ebec),
+            color: Color(0xffdee0e3),
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(12),
               bottomRight: Radius.circular(12),
@@ -381,7 +354,7 @@ class BuyCryptoTextfield extends StatelessWidget {
             onPressed: () {},
             child: Row(
               children: [
-                SizedBox(width: 6),
+                const SizedBox(width: 6),
                 Container(
                   height: 24.8,
                   width: 24.8,
@@ -397,9 +370,9 @@ class BuyCryptoTextfield extends StatelessWidget {
                 Text(
                   currency,
                   style: const TextStyle(
-                      fontSize: 17, fontFamily: 'Sf', 
-                      
-                      ),
+                    fontSize: 17,
+                    fontFamily: 'Sf',
+                  ),
                 ),
                 const SizedBox(width: 20),
                 const Icon(
@@ -414,3 +387,206 @@ class BuyCryptoTextfield extends StatelessWidget {
   }
 }
 
+class BuyCryptoPageFooterButtonsWrap extends StatelessWidget {
+  const BuyCryptoPageFooterButtonsWrap({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    List<String> buttons;
+
+    buttons = [
+      'Buy BTC',
+      'Buy ETH',
+      'Buy LINK',
+      'Buy XLM',
+      'Buy USDT',
+      'Buy USDC',
+      'Buy LTC',
+      'Buy DOGE',
+      'Buy MATIC',
+      'Buy ALGO',
+      'Buy SOL',
+      'Buy DOT',
+      'Buy SHIB',
+      'Buy NEAR',
+      'Buy APE',
+      'Buy ADA',
+      'Buy ATOM',
+      'Buy AVAX',
+      'Buy BCH',
+      'Buy MANA',
+      'Buy SAND',
+      'Buy TRX',
+      'Buy XRP'
+    ];
+
+    
+    return Wrap(
+      direction: Axis.horizontal,
+      children: buttons.map((i) {  
+        return Padding(
+          padding: const EdgeInsets.only(
+            right: 12.0,
+            bottom: 12.0,
+          ),
+          child: BuyCryptoPageFooterButton(text:i),
+        );
+      }).toList(),
+    );
+  }
+}
+
+class BuyCryptoPageFooterButton extends StatefulWidget {
+  const BuyCryptoPageFooterButton({
+    Key? key, required this.text,
+   
+  }) :  super(key: key);
+  final String text;
+  @override
+  State<BuyCryptoPageFooterButton> createState() => _BuyCryptoPageFooterButtonState();
+}
+
+class _BuyCryptoPageFooterButtonState extends State<BuyCryptoPageFooterButton> {
+    Color _textColor = kBackgroundColour;
+    Color _buttonColor = kBlackColour;
+    Color _buttonBorder = kBackgroundColour;
+
+    void _makeButtonWhite(PointerEvent details) {
+      setState(() {
+        _textColor = kBlackColour;
+        _buttonColor = kBackgroundColour;
+        _buttonBorder = kBackgroundColour;
+      });
+    }
+
+    void _returnButtonBlack(PointerEvent details) {
+      setState(() {
+        _textColor = kBackgroundColour;
+        _buttonColor = kBlackColour;
+        _buttonBorder = kBackgroundColour;
+      });
+    }
+
+    
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onHover: _makeButtonWhite,
+      onExit: _returnButtonBlack,
+      child: MaterialButton(
+        color: _buttonColor,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+            side: BorderSide(color: _buttonBorder)),
+        onPressed: () {},
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20.0,
+            vertical: 4,
+          ),
+          child: Text(
+            widget.text,
+            style: TextStyle(
+              color: _textColor,
+              fontSize: 14,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+class BuyCryptoPageNavBarDoubleButton extends StatelessWidget {
+  const BuyCryptoPageNavBarDoubleButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double horizontalPadding = 20;
+    double verticalPadding = 16;
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        MaterialButton(
+          elevation: 0,
+          onPressed: (){},
+          color: kBackgroundColour,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: horizontalPadding,
+              vertical: verticalPadding,
+            ),
+            child: Text(
+              'Buy Crypto',
+              style: TextStyle(fontSize: 16.0, color: kBlackColour),
+            ),
+          ),
+        ),
+        MaterialButton(
+          elevation: 0,
+          onPressed: null,
+          color: kBackgroundColour,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: horizontalPadding,
+              vertical: verticalPadding,
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Business',
+                  style: TextStyle(fontSize: 16.0, color: kBlackColour),
+                ),
+                const Icon(
+                  Icons.arrow_drop_down_outlined,
+                ),
+              ],
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+// ignore: camel_case_types
+class kMyTextField extends StatelessWidget {
+  const kMyTextField({
+    Key? key,
+    required this.placeholder,
+  }) : super(key: key);
+  final String placeholder;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+    style: const TextStyle(
+      fontSize: 16,
+    ),
+    cursorColor: Colors.black12,
+    cursorWidth: 1,
+    decoration: InputDecoration(
+      hintText: (placeholder), //hint text
+      hintStyle: const TextStyle(fontSize: 16, fontFamily: 'Sf'),
+      //focusColor: kMainColour,
+      fillColor: kTextFieldColour,
+      filled: true,
+      border: const OutlineInputBorder(
+    borderSide: BorderSide.none,
+    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+      ),
+      focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(
+    width: 1,
+    color: kMainColour,
+    ),
+    borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+    ),
+      ),
+    );
+  }
+}

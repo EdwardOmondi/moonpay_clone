@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moonpay_clone/constants.dart';
-import 'package:moonpay_clone/pages/buy_crypto_page.dart';
-import 'package:moonpay_clone/pages/landing_page.dart';
+import 'constants.dart';
+import 'pages/buy_crypto_page.dart';
+import 'pages/landing_page.dart';
+import 'pages/address_page.dart';
 
 void main() {
 runApp(const MyApp());
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => const LandingPage()),
         GetPage(name: '/second', page: () => const BuyCryptoPage()),
+        GetPage(name: '/third', page: () => const AddressPage()),
   ],
     );
   }

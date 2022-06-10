@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moonpay_clone/constants.dart';
 import 'package:moonpay_clone/elements.dart';
-
+import 'package:get/get.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:crypto_font_icons/crypto_font_icons.dart';
 
@@ -369,7 +369,8 @@ class FooterButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Wrap(
+      direction: Axis.horizontal,
       children: [
         Container(
           height: 40.0,
@@ -403,44 +404,44 @@ class FooterLinks extends StatelessWidget {
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:  [
-            const FooterLinkButton(text: 'Careers',),
-            const SizedBox(height: 12),
-            const FooterLinkButton(text: 'Blog',),
-            const SizedBox(height: 12),
-            const FooterLinkButton(text: 'Status',),],
+          children:  const [
+            FooterLinkButton(text: 'Careers',),
+            SizedBox(height: 12),
+            FooterLinkButton(text: 'Blog',),
+            SizedBox(height: 12),
+            FooterLinkButton(text: 'Status',),],
         ),
         Expanded(child: Container()),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:  [
-            const FooterLinkButton(text: 'Security',),
-            const SizedBox(height: 12),
-            const FooterLinkButton(text: 'Contact us',),
-            const SizedBox(height: 12),
-            const FooterLinkButton(text: 'Help Center',),
+          children:  const [
+            FooterLinkButton(text: 'Security',),
+            SizedBox(height: 12),
+            FooterLinkButton(text: 'Contact us',),
+            SizedBox(height: 12),
+            FooterLinkButton(text: 'Help Center',),
           ],
         ),
         Expanded(child: Container()),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:  [
-            const FooterLinkButton(text: 'Terms of use',),
-            const SizedBox(height: 12),
-            const FooterLinkButton(text: 'Privacy Policy',),
-            const SizedBox(height: 12),
-            const FooterLinkButton(text: 'Cookie Policy',),
+          children:  const [
+            FooterLinkButton(text: 'Terms of use',),
+            SizedBox(height: 12),
+            FooterLinkButton(text: 'Privacy Policy',),
+            SizedBox(height: 12),
+            FooterLinkButton(text: 'Cookie Policy',),
           ],
         ),
         Expanded(child: Container()),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:  [
-            const FooterLinkButton(text: 'AML/KYC Policy',),
-            const SizedBox(height: 12),
-            const FooterLinkButton(text: 'Licenses',),
-            const SizedBox(height: 12),
-            const FooterLinkButton(text: 'Media',),
+          children:  const [
+            FooterLinkButton(text: 'AML/KYC Policy',),
+            SizedBox(height: 12),
+            FooterLinkButton(text: 'Licenses',),
+            SizedBox(height: 12),
+            FooterLinkButton(text: 'Media',),
           ],
         ),
         Expanded(child: Container()),
@@ -1033,7 +1034,7 @@ class SubscribeForm extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
             color: kBackgroundColour,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w600,
           ),
         ),
         const SizedBox(
@@ -1138,7 +1139,7 @@ class SubscribeForm extends StatelessWidget {
             style: TextStyle(
               fontSize: 16,
               color: kBackgroundColour,
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: 24),
@@ -1251,3 +1252,1545 @@ class SubscribeForm extends StatelessWidget {
     }
   }
 }
+
+class BuyCryptoPageBody extends StatelessWidget {
+  const BuyCryptoPageBody({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double screenWidth;
+    double screenWidthFunc(BuildContext context) =>
+        MediaQuery.of(context).size.width;
+    screenWidth = screenWidthFunc(context);
+    if (screenWidth < 384) {
+      return Column(
+        children: [
+          const SizedBox(height: 40),
+          Card(
+            shadowColor: kMainColour,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24.0),
+            ),
+            elevation:0,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SizedBox(
+                //width: 352,
+                width: screenWidth,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const SelectableText(
+                            'Buy BTC',
+                            style: TextStyle(
+                              fontSize: 21,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Sf',
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 40.0),
+                            child: MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: Text(
+                                'Sell BTC',
+                                style: TextStyle(
+                                    fontSize: 21,
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: 'Sf',
+                                    color: Color(0xffcccccc)),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16.0),
+                            child: IconButton(
+                              hoverColor: kBackgroundColour,
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.menu_outlined,
+                                size: 22,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 32),
+                      const Text(
+                        'I want to spend',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: 'Sf',
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff505052)),
+                      ),
+                      const SizedBox(height: 8),
+                      BuyCryptoTextfield(
+                        currency: 'KES',
+                        placeholder: '40,000',
+                        image: kenyanFlag,
+                      ),
+                      const SizedBox(height: 32),
+                      const Text(
+                        'I want to buy',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: 'Sf',
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff505052)),
+                      ),
+                      const SizedBox(height: 8),
+                      BuyCryptoTextfield(
+                        currency: 'BTC',
+                        placeholder: '0.01044',
+                        image: bitcoinImage,
+                      ),
+                      const SizedBox(height: 32),
+                      Row(
+                        children: [
+                          const Text(
+                            'Summary',
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Sf',
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff505052)),
+                          ),
+                          Expanded(child: Container()),
+                          const Text(
+                            'Quote updates in 1s',
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Sf',
+                                color: Color(0xff505052)),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: kTextFieldColour,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: SizedBox(
+                            width: 320,
+                            height: 48,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                RichText(
+                                  text: const TextSpan(
+                                    text: 'You get ',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'Sf',
+                                    ),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                          text: '0.01046 BTC ',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontFamily: 'Sf',
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(
+                                          text: 'for ',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontFamily: 'Sf',
+                                          )),
+                                      TextSpan(
+                                          text: '\nKES 40,000.00',
+                                          style: TextStyle(
+                                              height: 1.5,
+                                              fontSize: 16,
+                                              fontFamily: 'Sf',
+                                              fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                ),
+                                const Icon(
+                                  Icons.expand_more_outlined,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 9,
+                      ),
+                      MaterialButton(
+                        onPressed: () {},
+                        color: kMainColour,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40)),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 32.0,
+                            vertical: 16.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.arrow_forward_outlined,
+                                color: kMainColour,
+                              ),
+                              Expanded(
+                                child: Container(),
+                              ),
+                              Text(
+                                'Continue',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: kBackgroundColour,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(),
+                              ),
+                              Icon(
+                                Icons.arrow_forward_outlined,
+                                color: kBackgroundColour,
+                                size: 24,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Expanded(child: Container()),
+                          const Text(
+                            'By continuing, you agree to our cookie policy',
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Sf',
+                                color: Color(0xff505052)),
+                          ),
+                          Expanded(child: Container()),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 64),
+          const TinyLandingText(),
+          const SizedBox(height: 56),
+        ],
+      );
+    } 
+    if (screenWidth < 670) {
+      return Column(
+        children: [
+          const SizedBox(height: 40),
+          Card(
+            shadowColor: kMainColour,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24.0),
+            ),
+            elevation:0,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SizedBox(
+                width: 352,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const SelectableText(
+                            'Buy BTC',
+                            style: TextStyle(
+                              fontSize: 21,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Sf',
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 40.0),
+                            child: MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: Text(
+                                'Sell BTC',
+                                style: TextStyle(
+                                    fontSize: 21,
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: 'Sf',
+                                    color: Color(0xffcccccc)),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16.0),
+                            child: IconButton(
+                              hoverColor: kBackgroundColour,
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.menu_outlined,
+                                size: 22,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 32),
+                      const Text(
+                        'I want to spend',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: 'Sf',
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff505052)),
+                      ),
+                      const SizedBox(height: 8),
+                      BuyCryptoTextfield(
+                        currency: 'KES',
+                        placeholder: '40,000',
+                        image: kenyanFlag,
+                      ),
+                      const SizedBox(height: 32),
+                      const Text(
+                        'I want to buy',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: 'Sf',
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff505052)),
+                      ),
+                      const SizedBox(height: 8),
+                      BuyCryptoTextfield(
+                        currency: 'BTC',
+                        placeholder: '0.01044',
+                        image: bitcoinImage,
+                      ),
+                      const SizedBox(height: 32),
+                      Row(
+                        children: [
+                          const Text(
+                            'Summary',
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Sf',
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff505052)),
+                          ),
+                          Expanded(child: Container()),
+                          const Text(
+                            'Quote updates in 1s',
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Sf',
+                                color: Color(0xff505052)),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: const Color(0xfff3f4f5),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: SizedBox(
+                            width: 320,
+                            height: 48,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                RichText(
+                                  text: const TextSpan(
+                                    text: 'You get ',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'Sf',
+                                    ),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                          text: '0.01046 BTC ',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontFamily: 'Sf',
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(
+                                          text: 'for ',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontFamily: 'Sf',
+                                          )),
+                                      TextSpan(
+                                          text: '\nKES 40,000.00',
+                                          style: TextStyle(
+                                              height: 1.5,
+                                              fontSize: 16,
+                                              fontFamily: 'Sf',
+                                              fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                ),
+                                const Icon(
+                                  Icons.expand_more_outlined,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 9,
+                      ),
+                      MaterialButton(
+                        onPressed: () {},
+                        color: kMainColour,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40)),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 32.0,
+                            vertical: 16.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.arrow_forward_outlined,
+                                color: kMainColour,
+                              ),
+                              Expanded(
+                                child: Container(),
+                              ),
+                              Text(
+                                'Continue',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: kBackgroundColour,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(),
+                              ),
+                              Icon(
+                                Icons.arrow_forward_outlined,
+                                color: kBackgroundColour,
+                                size: 24,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Expanded(child: Container()),
+                          const Text(
+                            'By continuing, you agree to our cookie policy',
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Sf',
+                                color: Color(0xff505052)),
+                          ),
+                          Expanded(child: Container()),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 64),
+          const TinyLandingText(),
+          const SizedBox(height: 56),
+        ],
+      );
+    } else {
+      return Column(
+        children: [
+          const SizedBox(height: 80),
+          Container(
+            decoration: BoxDecoration(
+              color:kBackgroundColour,
+              boxShadow: const [
+                BoxShadow(
+                  color: Color.fromRGBO(125,0,255,0.20),
+                  blurRadius: 30.0,
+                  spreadRadius:0.0,
+                ),
+              ],
+              borderRadius: BorderRadius.circular(24.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: SizedBox(
+                width: 352,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const SelectableText(
+                            'Buy BTC',
+                            style: TextStyle(
+                              fontSize: 21,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Sf',
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 40.0),
+                            child: MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: Text(
+                                'Sell BTC',
+                                style: TextStyle(
+                                    fontSize: 21,
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: 'Sf',
+                                    color: Color(0xffcccccc)),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16.0),
+                            child: IconButton(
+                              hoverColor: kBackgroundColour,
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.menu_outlined,
+                                size: 22,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 32),
+                      const Text(
+                        'I want to spend',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: 'Sf',
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff505052)),
+                      ),
+                      const SizedBox(height: 8),
+                      BuyCryptoTextfield(
+                        currency: 'KES',
+                        placeholder: '40,000',
+                        image: kenyanFlag,
+                      ),
+                      const SizedBox(height: 32),
+                      const Text(
+                        'I want to buy',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: 'Sf',
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff505052)),
+                      ),
+                      const SizedBox(height: 8),
+                      BuyCryptoTextfield(
+                        currency: 'BTC',
+                        placeholder: '0.01044',
+                        image: bitcoinImage,
+                      ),
+                      const SizedBox(height: 32),
+                      Row(
+                        children: [
+                          const Text(
+                            'Summary',
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Sf',
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff505052)),
+                          ),
+                          Expanded(child: Container()),
+                          const Text(
+                            'Quote updates in 1s',
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Sf',
+                                color: Color(0xff505052)),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: const Color(0xfff3f4f5),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: SizedBox(
+                            width: 320,
+                            height: 48,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                RichText(
+                                  text: const TextSpan(
+                                    text: 'You get ',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'Sf',
+                                    ),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                          text: '0.01046 BTC ',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontFamily: 'Sf',
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(
+                                          text: 'for ',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontFamily: 'Sf',
+                                          )),
+                                      TextSpan(
+                                          text: '\nKES 40,000.00',
+                                          style: TextStyle(
+                                              height: 1.5,
+                                              fontSize: 16,
+                                              fontFamily: 'Sf',
+                                              fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                ),
+                                const Icon(
+                                  Icons.expand_more_outlined,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 9,
+                      ),
+                      MaterialButton(
+                        onPressed: () {
+                          Get.toNamed("/third");
+                        },
+                        color: kMainColour,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40)),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 32.0,
+                            vertical: 16.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.arrow_forward_outlined,
+                                color: kMainColour,
+                              ),
+                              Expanded(
+                                child: Container(),
+                              ),
+                              Text(
+                                'Continue',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: kBackgroundColour,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(),
+                              ),
+                              Icon(
+                                Icons.arrow_forward_outlined,
+                                color: kBackgroundColour,
+                                size: 24,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Expanded(child: Container()),
+                          const Text(
+                            'By continuing, you agree to our cookie policy',
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Sf',
+                                color: Color(0xff505052)),
+                          ),
+                          Expanded(child: Container()),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 64),
+          const TinyLandingText(),
+          const SizedBox(height: 56),
+        ],
+      );
+    }
+  }
+}
+
+class BuyCryptoPageFooter extends StatelessWidget {
+  const BuyCryptoPageFooter({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double screenWidth;
+    double screenWidthFunc(BuildContext context) =>
+        MediaQuery.of(context).size.width;
+    screenWidth = screenWidthFunc(context);
+    if (screenWidth < 960) {
+      return Container(
+        color: kBlackColour,
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child:
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start, 
+                children: [
+                  const SizedBox(height: 20,),
+            Text(
+              'Quick buy',
+              style: TextStyle(
+                fontSize: 16,
+                color: kBackgroundColour,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(
+              height:20
+            ),
+            const BuyCryptoPageFooterButtonsWrap(),
+            const SizedBox(
+              height:40
+            ),
+            Container(
+              height:1,
+              decoration: BoxDecoration(
+              color:kBackgroundColour,
+            ),)
+          ]),
+        ),
+      );
+    }
+    if (screenWidth < 1280) {
+      return Container(
+        color: kBlackColour,
+        width: screenWidth,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+              height:40
+            ),
+                Text(
+              'Quick buy',
+              style: TextStyle(
+                fontSize: 16,
+                color: kBackgroundColour,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(
+              height:20
+            ),
+            const BuyCryptoPageFooterButtonsWrap(),
+            const SizedBox(
+              height:40
+            ),
+            Container(
+              height:1,
+              decoration: BoxDecoration(
+              color:kBackgroundColour,
+            ),)
+              ]),
+        ),
+      );
+    } else {
+      return Container(
+        color: kBlackColour,
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 60.0),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+              height:40
+            ),
+                Text(
+              'Quick buy',
+              style: TextStyle(
+                fontSize: 16,
+                color: kBackgroundColour,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(
+              height:20
+            ),
+            const BuyCryptoPageFooterButtonsWrap(),
+            const SizedBox(
+              height:40
+            ),
+            Container(
+              height:1,
+              decoration: BoxDecoration(
+              color:kBackgroundColour,
+            ),)
+              ]),
+        ),
+      );
+    }
+  }
+}
+class BuyCryptoPageNavBar extends StatelessWidget {
+  const BuyCryptoPageNavBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double screenWidth;
+    double screenWidthFunc(BuildContext context) =>
+        MediaQuery.of(context).size.width;
+    screenWidth = screenWidthFunc(context);
+    if (screenWidth < 1023) {
+      return SizedBox(
+        width: screenWidth - 40,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const NavBarLogo(),
+            Expanded(
+              child: Container(),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const FaIcon(
+                // Icons.menu_outlined,
+                FontAwesomeIcons.bars,
+                size: 22,
+              ),
+            )
+          ],
+        ),
+      );
+    }
+    if (screenWidth < 1280) {
+      return SizedBox(
+        width: screenWidth - 40,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const NavBarLogo(),
+            const BuyCryptoPageNavBarDoubleButton(),
+            Expanded(
+              child: Container(),
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                NavBarButton(text: 'About Us'),
+                NavBarButton(text: 'Career'),
+                NavBarButton(text: 'Blog'),
+                NavBarButton(text: 'Help Center'),
+              ],
+            ),
+          ],
+        ),
+      );
+    } else {
+      return SizedBox(
+        width: screenWidth - 120,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const NavBarLogo(),
+            const BuyCryptoPageNavBarDoubleButton(),
+            Expanded(
+              child: Container(),
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                NavBarButton(text: 'About Us'),
+                NavBarButton(text: 'Career'),
+                NavBarButton(text: 'Blog'),
+                NavBarButton(text: 'Help Center'),
+              ],
+            ),
+          ],
+        ),
+      );
+    }
+  }
+}
+class AddressPageBody extends StatelessWidget {
+  const AddressPageBody({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double screenWidth;
+    double screenWidthFunc(BuildContext context) =>
+        MediaQuery.of(context).size.width;
+    screenWidth = screenWidthFunc(context);
+    if (screenWidth < 384) {
+      return Column(
+        children: [
+          const SizedBox(height: 20),
+          Card(
+            shadowColor: kMainColour,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24.0),
+            ),
+            elevation:0,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SizedBox(
+                //width: 352,
+                width: screenWidth,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: const [
+                          Icon(
+                            Icons.navigate_before_outlined,
+                          ),
+                          SizedBox(width: 10),
+                          SelectableText(
+                            'Enter card billing address',
+                            style: TextStyle(
+                              fontSize: 21,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Sf',
+                            ),
+                          ),],
+                      ),
+                      const SizedBox(height: 30),
+                      Row(
+                        children: [
+                          Theme(
+                      data: Theme.of(context).copyWith(
+                        //unselectedWidgetColor: kBackgroundColour,
+                        primaryColor: kMainColour,
+                      ),
+                      child: SizedBox(
+                        width: 22,
+                        height: 22,
+                        child: Checkbox(
+                          checkColor: kMainColour,
+                          activeColor: kBackgroundColour,
+                          value: true,
+                          onChanged: (value) {},
+                          side: BorderSide(
+                                width: 1,
+                                color: kMainColour,
+                              ),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4)),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width:12),
+                    const Text('Use the address I have on file'),]
+                      ),
+                      const SizedBox(height: 30),
+                      const Text(
+                        'Address',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: 'Sf',
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff505052)),
+                      ),
+                      const SizedBox(height: 8),
+                      const kMyTextField(placeholder:'P.O. Box2032 Nairobi'),const SizedBox(height: 30),
+                      const Text(
+                        'Address 2 (optional)',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: 'Sf',
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff505052)),
+                      ),
+                      const SizedBox(height: 8),
+                      const kMyTextField(placeholder:''),const SizedBox(height: 30),
+                      Row(
+                        children:[
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children:const [
+                                Text(
+                        'City',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: 'Sf',
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff505052)),
+                      ),
+                      SizedBox(height: 8),
+                      kMyTextField(placeholder:'Nairobi'),
+                              ]
+                            ),
+                          ),
+                          const SizedBox(width:20),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text(
+                        'Postcode',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: 'Sf',
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff505052)),
+                      ),
+                      SizedBox(height: 8),
+                      kMyTextField(placeholder:'00100'),
+                              ]
+                            ),
+                          ),
+                        
+                        ]
+                      ),
+                      const SizedBox(height: 30),
+                      const Text(
+                        'Country',
+                        style: TextStyle(
+                      fontSize: 13,
+                      fontFamily: 'Sf',
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xff505052)),
+                      ),
+                      const SizedBox(height: 8),
+                      const kMyTextField(placeholder:'Kenya'),
+                      const SizedBox(
+                        // height: MediaQuery.of(context).size.height / 15,
+                        height: 20,
+                      ),
+                      MaterialButton(
+                        onPressed: () {},
+                        color: kMainColour,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40)),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 32.0,
+                            vertical: 16.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.arrow_forward_outlined,
+                                color: kMainColour,
+                              ),
+                              Expanded(
+                                child: Container(),
+                              ),
+                              Text(
+                                'Continue',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: kBackgroundColour,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(),
+                              ),
+                              Icon(
+                                Icons.arrow_forward_outlined,
+                                color: kBackgroundColour,
+                                size: 24,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          const TinyLandingText(),
+          const SizedBox(height: 26),
+        ],
+      );
+    } 
+    if (screenWidth < 670) {
+      return Column(
+        children: [
+          const SizedBox(height: 20),
+          Card(
+            shadowColor: kMainColour,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24.0),
+            ),
+            elevation:0,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SizedBox(
+                width: 352,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: const [
+                          Icon(
+                            Icons.navigate_before_outlined,
+                          ),
+                          SizedBox(width: 10),
+                          SelectableText(
+                            'Enter card billing address',
+                            style: TextStyle(
+                              fontSize: 21,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Sf',
+                            ),
+                          ),],
+                      ),
+                      const SizedBox(height: 30),
+                      Row(
+                        children: [
+                          Theme(
+                      data: Theme.of(context).copyWith(
+                        //unselectedWidgetColor: kBackgroundColour,
+                        primaryColor: kMainColour,
+                      ),
+                      child: SizedBox(
+                        width: 22,
+                        height: 22,
+                        child: Checkbox(
+                          checkColor: kMainColour,
+                          activeColor: kBackgroundColour,
+                          value: true,
+                          onChanged: (value) {},
+                          side: BorderSide(
+                                width: 1,
+                                color: kMainColour,
+                              ),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4)),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width:12),
+                    const Text('Use the address I have on file'),]
+                      ),
+                      const SizedBox(height: 30),
+                      const Text(
+                        'Address',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: 'Sf',
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff505052)),
+                      ),
+                      const SizedBox(height: 8),
+                      const kMyTextField(placeholder:'P.O. Box 2032 Nairobi'),
+                      const SizedBox(height: 30),
+                      const Text(
+                        'Address 2 (optional)',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: 'Sf',
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff505052)),
+                      ),
+                      const SizedBox(height: 8),
+                      const kMyTextField(placeholder:''),
+                      const SizedBox(height: 30),
+                      Row(
+                        children:[
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text(
+                                  'City',
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: 'Sf',
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xff505052)),
+                                ),
+                                SizedBox(height: 8),
+                                kMyTextField(placeholder:'Nairobi'),
+                                
+                              ]
+                            ),
+                          ),
+                          const SizedBox(width:20),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text(
+                                  'Postcode',
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: 'Sf',
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xff505052)),
+                                ),
+                                SizedBox(height: 8),
+                                kMyTextField(placeholder:'00100'),
+                                
+                              ]
+                            ),
+                          ),
+                        
+                        ]
+                      ),
+                      const SizedBox(height: 30),
+                      const Text(
+                        'Country',
+                        style: TextStyle(
+                      fontSize: 13,
+                      fontFamily: 'Sf',
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xff505052)),
+                      ),
+                      const SizedBox(height: 8),
+                      const kMyTextField(placeholder:'Kenya'),
+                      const SizedBox(
+                        // height: MediaQuery.of(context).size.height / 15,
+                        height: 20,
+                      ),
+                      MaterialButton(
+                        onPressed: () {},
+                        color: kMainColour,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40)),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 32.0,
+                            vertical: 16.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.arrow_forward_outlined,
+                                color: kMainColour,
+                              ),
+                              Expanded(
+                                child: Container(),
+                              ),
+                              Text(
+                                'Continue',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: kBackgroundColour,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(),
+                              ),
+                              Icon(
+                                Icons.arrow_forward_outlined,
+                                color: kBackgroundColour,
+                                size: 24,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          const TinyLandingText(),
+          const SizedBox(height: 26),
+        ],
+      );
+    } else {
+      return Column(
+        children: [
+          const SizedBox(height: 45),
+          Container(
+            decoration: BoxDecoration(
+              color:kBackgroundColour,
+              boxShadow: const [
+                BoxShadow(
+                  color: Color.fromRGBO(125,0,255,0.20),
+                  blurRadius: 30.0,
+                  spreadRadius:0.0,
+                ),
+              ],
+              borderRadius: BorderRadius.circular(24.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: SizedBox(
+                width: 352,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: const [
+                          Icon(
+                            Icons.navigate_before_outlined,
+                          ),
+                          SizedBox(width: 10),
+                          SelectableText(
+                            'Enter card billing address',
+                            style: TextStyle(
+                              fontSize: 21,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Sf',
+                            ),
+                          ),],
+                      ),
+                      const SizedBox(height: 30),
+                      Row(
+                        children: [
+                          Theme(
+                      data: Theme.of(context).copyWith(
+                        //unselectedWidgetColor: kBackgroundColour,
+                        primaryColor: kMainColour,
+                      ),
+                      child: SizedBox(
+                        width: 22,
+                        height: 22,
+                        child: Checkbox(
+                          checkColor: kMainColour,
+                          activeColor: kBackgroundColour,
+                          value: true,
+                          onChanged: (value) {},
+                          side: BorderSide(
+                                width: 1,
+                                color: kMainColour,
+                              ),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4)),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width:12),
+                    const Text('Use the address I have on file'),]
+                      ),
+                      const SizedBox(height: 30),
+                      const Text(
+                        'Address',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: 'Sf',
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff505052)),
+                      ),
+                      const SizedBox(height: 8),
+                      const kMyTextField(placeholder:'P.O.Box 2032 Nairobi'),const SizedBox(height: 30),
+                      const Text(
+                        'Address 2 (optional)',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: 'Sf',
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff505052)),
+                      ),
+                      const SizedBox(height: 8),
+                      const kMyTextField(placeholder:''),const SizedBox(height: 30),
+                      Row(
+                        children:[
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children:[
+                                const Text(
+                        'City',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: 'Sf',
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff505052)),
+                      ),
+                      const SizedBox(height: 8),
+                      TextField(
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
+                      cursorColor: Colors.black12,
+                      cursorWidth: 1,
+                      decoration: InputDecoration(
+                        hintText: ('Nairobi'), //hint text
+                        hintStyle: const TextStyle(fontSize: 16, fontFamily: 'Sf'),
+                        //focusColor: kMainColour,
+                        fillColor: const Color(0xfff3f4f5),
+                        filled: true,
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: kMainColour,
+                          ),
+                            borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                          ),
+                        ),
+                      ),
+                      
+                              ]
+                            ),
+                          ),
+                          const SizedBox(width:20),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children:[
+                                const Text(
+                        'Postcode',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: 'Sf',
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff505052)),
+                      ),
+                      const SizedBox(height: 8),
+                      TextField(
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
+                      cursorColor: Colors.black12,
+                      cursorWidth: 1,
+                      decoration: InputDecoration(
+                        hintText: ('00100'), //hint text
+                        hintStyle: const TextStyle(fontSize: 16, fontFamily: 'Sf'),
+                        //focusColor: kMainColour,
+                        fillColor: const Color(0xfff3f4f5),
+                        filled: true,
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: kMainColour,
+                          ),
+                            borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                          ),
+                        ),
+                      ),
+                      
+                              ]
+                            ),
+                          ),
+                        
+                        ]
+                      ),
+                      const SizedBox(height: 30),
+                      const Text(
+                        'Country',
+                        style: TextStyle(
+                      fontSize: 13,
+                      fontFamily: 'Sf',
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xff505052)),
+                      ),
+                      const SizedBox(height: 8),
+                      const kMyTextField(placeholder:'Kenya'),const SizedBox(
+                        // height: MediaQuery.of(context).size.height / 15,
+                        height: 20,
+                      ),
+                      MaterialButton(
+                        onPressed: () {},
+                        color: kMainColour,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40)),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 32.0,
+                            vertical: 16.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.arrow_forward_outlined,
+                                color: kMainColour,
+                              ),
+                              Expanded(
+                                child: Container(),
+                              ),
+                              Text(
+                                'Continue',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: kBackgroundColour,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(),
+                              ),
+                              Icon(
+                                Icons.arrow_forward_outlined,
+                                color: kBackgroundColour,
+                                size: 24,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 54),
+          const TinyLandingText(),
+          const SizedBox(height: 56),
+        ],
+      );
+    }
+  }
+}
+
